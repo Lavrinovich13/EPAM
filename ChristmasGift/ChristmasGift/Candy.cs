@@ -17,13 +17,6 @@ namespace ChristmasGift
         Cream,
         Liqueur }
 
-    enum WrapperTypes
-    {
-        Wrapped,
-        NotWrapped,
-        PartiallyWrapped,
-        InCorrexes
-    }
 
     class Candy : Sweetness
     {

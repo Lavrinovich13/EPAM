@@ -30,10 +30,20 @@ namespace ChristmasGift
         Ordinary,
         Porous
     }
+
+    enum Forms
+    {
+        inTiles, 
+        figural, 
+        patterned,
+        medals, 
+        batons,
+        tablets
+    }
     class Chocolate : Sweetness
     {
         private ChocolateTypes type;
-        private ContentTypes contentType;
+        private List<ContentTypes> contents;
         private ProcessingMethod processingMethod;
     }
 }
