@@ -15,13 +15,16 @@ namespace ChristmasGift
         Pralines, 
         Roasting,
         Cream,
-        Liqueur }
-
+        Liqueur,
+        Lollipop
+    }
 
     class Candy : Sweetness
     {
         private bool isCoveredWithChocolate;
+        /// <summary>
+        /// CandyTypes : Fondant, Fruit, Jelly, Marzipan, Pralines, Roasting, Cream, Liqueur, Lollipop
+        /// </summary>
         private CandyTypes candyType;
-        private WrapperTypes wrapperType;
     }
 }

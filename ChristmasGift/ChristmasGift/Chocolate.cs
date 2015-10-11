@@ -24,26 +24,24 @@ namespace ChristmasGift
         Jelly
     }
 
-    enum ProcessingMethod
-    {
-        Dessert,
-        Ordinary,
-        Porous
-    }
-
     enum Forms
     {
         inTiles, 
-        figural, 
-        patterned,
-        medals, 
-        batons,
-        tablets
+        batons
     }
     class Chocolate : Sweetness
     {
+        /// <summary>
+        /// Chocalate Types : White, Milky, Bitter
+        /// </summary>
         private ChocolateTypes type;
+        /// <summary>
+        /// Without, Fondant, Hazelnut, Chocolate, Butter, Cream, Jelly
+        /// </summary>
         private List<ContentTypes> contents;
-        private ProcessingMethod processingMethod;
+        /// <summary>
+        ///  inTiles, batons
+        /// </summary>
+        private Forms form;
     }
 }
