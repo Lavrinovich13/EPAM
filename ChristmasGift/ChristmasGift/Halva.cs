@@ -14,11 +14,29 @@ namespace ChristmasGift
     }
     class Halva : Sweetness
     {
-        private bool IsCoveredByChocolate;
+        private bool _IsCoveredWithChocolate;
+        public bool IsCoveredWithChocolate { get { return _IsCoveredWithChocolate; } }
         /// <summary>
         /// HalvaTypes : Sesame, Peanuts, Sunflower
         /// </summary>
-        private HalvaTypes halvaType;
+        private HalvaTypes _Type;
+        public HalvaTypes Type { get { return _Type; } }
 
+         public Halva
+           (string title,
+            string countryOfManufacturer, 
+            string manufacturer, 
+            uint price,
+            uint weight, 
+            WrapperTypes typeOfAppearance, 
+            uint sugar, 
+            uint nutritionalValue,
+            bool isCoveredWithChocolate,
+            HalvaTypes type)
+            :base(title, countryOfManufacturer, manufacturer, price, weight, typeOfAppearance, sugar, nutritionalValue)
+        {
+            this._Type = type;
+            this._IsCoveredWithChocolate = isCoveredWithChocolate;
+        }
     }
 }

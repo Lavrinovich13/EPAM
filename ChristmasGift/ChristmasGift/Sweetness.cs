@@ -19,38 +19,66 @@ namespace ChristmasGift
         /// <summary>
         /// Title of product
         /// </summary>
-        private string title;
+        private string _Title;
+        public string Title { get { return _Title; } }
         /// <summary>
         /// Country of manufacturer
         /// </summary>
-        private string countryOfManufacturer;
+        private string _CountryOfManufacturer;
+        public string CountryOfManufacturer { get { return _CountryOfManufacturer; } }
         /// <summary>
         /// Name of manufacturer
         /// </summary>
-        private string manufacturer;
+        private string _Manufacturer;
+        public string Manufacturer { get { return _Manufacturer; } }
         /// <summary>
         /// Price in dollars
         /// </summary>
-        private uint price;
+        private uint _Price;
+        public uint Price { get { return _Price; } }
         /// <summary>
         /// Weight in gramms
         /// </summary>
-        private double weight;
+        private uint _Weight;
+        public uint Weight { get { return _Weight; } }
         /// <summary>
         /// Wrapper appearance : Wrapped, NotWrapped, PartiallyWrapped,InCorrexes
         /// </summary>
-        private WrapperTypes typeOfAppearance;
+        private WrapperTypes _TypeOfAppearance;
+        public WrapperTypes TypeOfAppearance { get { return _TypeOfAppearance; } }
         #endregion
 
         #region NutritionCharacteristic
         /// <summary>
         /// Amount of sugar in 100 g
         /// </summary>
-        private double sugar;
+        private uint _Sugar;
+        public uint Sugar { get { return _Sugar; } }
         /// <summary>
         /// Nutritional value in kkal/100g
         /// </summary>
-        private double nutritionalValue;
+        private uint _NutritionalValue;
+        public uint NutritionalValue { get { return _NutritionalValue; } }
         #endregion
+
+        public Sweetness
+           (string title,
+            string countryOfManufacturer, 
+            string manufacturer, 
+            uint price,
+            uint weight, 
+            WrapperTypes typeOfAppearance, 
+            uint sugar, 
+            uint nutritionalValue)
+        {
+            this._Title = title;
+            this._CountryOfManufacturer = countryOfManufacturer;
+            this._Manufacturer = manufacturer;
+            this._Price = price;
+            this._Weight = weight;
+            this._TypeOfAppearance = typeOfAppearance;
+            this._Sugar = sugar;
+            this._NutritionalValue = nutritionalValue;
+        }
     }
 }
