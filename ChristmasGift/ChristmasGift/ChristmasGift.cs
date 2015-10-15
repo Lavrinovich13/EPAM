@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChristmasGift.Dimensions;
+using ChristmasGift.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,19 +10,19 @@ namespace ChristmasGift
 {
     class ChristmasGift
     {
-        private Dictionary<Sweetness, uint> _Contents;
+        private Dictionary<IElementOfGift, uint> _Contents;
 
         public ChristmasGift()
         {
-            _Contents = new Dictionary<Sweetness, uint>();
+            _Contents = new Dictionary<IElementOfGift, uint>();
         }
 
-        public ChristmasGift(Dictionary<Sweetness, uint> contents)
+        public ChristmasGift(Dictionary<IElementOfGift, uint> contents)
         {
             this._Contents = contents;
         }
 
-        public void Add(Sweetness sweetness, uint num = 1)
+        public void Add(IElementOfGift sweetness, uint num = 1)
         {
             _Contents.Add(sweetness, num);
         }
@@ -30,22 +32,51 @@ namespace ChristmasGift
             get { return (uint)_Contents.Sum(x => x.Value); }
         }
 
-        public uint Price
+        public IMeasuredValue Price
         {
-            get { return (uint)_Contents.Sum(x => x.Value * x.Key.Price); }
+            get 
+            {
+                double value = 0;
+                DimensionTypes dimension = _Contents.ElementAt(0).Key.Price.Dimension;
+
+                if (_Contents.All(x => x.Key.Price.Dimension == dimension))
+                {
+                    value = _Contents.Sum(x => x.Value * x.Key.Price.Value);
+                }
+
+                return new MeasuredValue(value, dimension);
+            }
         }
 
-        public uint Weight
+        public IMeasuredValue Weight
         {
-            get { return (uint)_Contents.Sum(x => x.Key.Weight); }
+            get
+            {
+                double value = 0;
+                DimensionTypes dimension = _Contents.ElementAt(0).Key.Weigth.Dimension;
+
+                if (_Contents.All(x => x.Key.Weigth.Dimension == dimension))
+                {
+                    value = _Contents.Sum(x => x.Value * x.Key.Weigth.Value);
+                }
+
+                return new MeasuredValue(value, dimension);
+            }
         }
 
-        public Sweetness FindForSugar(uint minSugar, uint maxSugar)
+        public IHaveSugar FindForSugar(IMeasuredValue minSugar, IMeasuredValue maxSugar)
         {
-            return _Contents.Single(x => x.Key.Sugar >= minSugar && x.Key.Sugar <= maxSugar).Key;
+            IHaveSugar item = null;
+            if (minSugar.Dimension == maxSugar.Dimension)
+            {
+                item = _Contents.Where(x => x.Key is IHaveSugar)
+                                .Select(x => x.Key as IHaveSugar)
+                                .Single(x => x.SugarValue.Value >= minSugar.Value && x.SugarValue.Value <= maxSugar.Value);
+            }
+            return item;
         }
 
-        public void Sort(IComparer<Sweetness> comparer)
+        public void Sort(IComparer<IElementOfGift> comparer)
         {
             _Contents.OrderBy(x => x.Key, comparer);
         }
