@@ -1,4 +1,5 @@
-﻿using ChristmasGift.GiftElements;
+﻿using ChristmasGift.Comparators;
+using ChristmasGift.GiftElements;
 using ChristmasGift.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -38,21 +39,10 @@ namespace ChristmasGift
               FruitTypes.Mandarin
             );
 
-            ordinaryGift.Add(Alenka, 5);
             ordinaryGift.Add(mandarin, 2);
-
-            //BinaryFormatter formatter = new BinaryFormatter();
-
-            //using (FileStream fileStream = new FileStream("dsaf.xml", FileMode.OpenOrCreate))
-            //{
-            //    formatter.Serialize(fileStream, Alenka);
-            //}
-
-            //using (FileStream fileStream = new FileStream("dsaf.xml", FileMode.OpenOrCreate))
-            //{
-            //    var v = (ElementOfGift)formatter.Deserialize(fileStream);
-            //}
-
+            ordinaryGift.Add(Alenka, 5);
+            
+            ordinaryGift.Sort(new ElementOfGiftByTitleComparer());
         }
     }
 }

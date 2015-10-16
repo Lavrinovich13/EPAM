@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 
 namespace ChristmasGift.GiftElements
 {
-    [Serializable]
     class Sweetness : ElementOfGift, ISweetness, IHaveSugar
     {
         protected SweetnessTypes _Type;

@@ -10,7 +10,7 @@ namespace ChristmasGift
 {
     class ChristmasGift
     {
-        private Dictionary<IElementOfGift, uint> _Contents;
+        private IEnumerable<KeyValuePair<IElementOfGift, uint>> _Contents;
 
         public ChristmasGift()
         {
@@ -24,7 +24,12 @@ namespace ChristmasGift
 
         public void Add(IElementOfGift sweetness, uint num = 1)
         {
-            _Contents.Add(sweetness, num);
+            _Contents = _Contents.Concat(new[] { new KeyValuePair<IElementOfGift, uint>(sweetness, num) });
+        }
+
+        public IEnumerator<KeyValuePair<IElementOfGift, uint>> GetEnumerator()
+        {
+            return _Contents.GetEnumerator();
         }
 
         public uint Count
@@ -78,7 +83,7 @@ namespace ChristmasGift
 
         public void Sort(IComparer<IElementOfGift> comparer)
         {
-            _Contents.OrderBy(x => x.Key, comparer);
+           _Contents = _Contents.OrderBy(x => x.Key, comparer);
         }
     }
 }

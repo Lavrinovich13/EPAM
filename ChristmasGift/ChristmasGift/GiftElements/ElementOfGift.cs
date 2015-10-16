@@ -8,8 +8,7 @@ using System.Xml.Serialization;
 
 namespace ChristmasGift.GiftElements
 {
-    [Serializable]
-    abstract class ElementOfGift : IElementOfGift
+    internal abstract class ElementOfGift : IElementOfGift
     {
         protected string _Title;
         public string Title

@@ -8,7 +8,6 @@ using System.Xml.Serialization;
 
 namespace ChristmasGift.Dimensions
 {
-    [Serializable]
     class MeasuredValue : IMeasuredValue
     {
         protected DimensionTypes _Dimension;
