@@ -1,4 +1,5 @@
 ﻿using ChristmasGift.Dimensions;
+using ChristmasGift.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChristmasGift
 {
-    interface IElementOfGift
+    interface IElementOfGift : IPrintableInConsole
     {
         string Title { get;}
         string Manufacturer { get;}

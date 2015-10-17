@@ -35,5 +35,14 @@ namespace ChristmasGift.GiftElements
             _SugarValue = sugarValue;
             _Type = type;
         }
+
+        public override void Print()
+        {
+            Console.WriteLine();
+            Console.WriteLine("----Sweetnes----");
+            base.Print();
+            Console.Write(String.Format("Sugar value: {0}{1}, Type: {2}, ", SugarValue.Value, SugarValue.Dimension, Type));
+            Console.WriteLine();
+        }
     }
 }

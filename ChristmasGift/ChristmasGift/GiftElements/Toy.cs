@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChristmasGift.GiftElements
 {
-    class Toy : ElementOfGift, IToy
+    class Toy : ElementOfGift
     {
         protected ToyTypes _Type;
         public ToyTypes Type
@@ -25,6 +25,15 @@ namespace ChristmasGift.GiftElements
             : base(title, manufacterer, countryOfManufacturer, weight, price)
         {
             _Type = type;
+        }
+
+        public override void Print()
+        {
+            Console.WriteLine();
+            Console.WriteLine("----Toy----");
+            base.Print();
+            Console.Write(String.Format("Type: {0}, ", Type));
+            Console.WriteLine();
         }
     }
 }

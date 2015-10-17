@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ChristmasGift
+namespace ChristmasGift 
 {
-    class ChristmasGift
+    class ChristmasGift : IPrintableInConsole
     {
         private IEnumerable<KeyValuePair<IElementOfGift, uint>> _Contents;
 
@@ -74,9 +74,7 @@ namespace ChristmasGift
             IHaveSugar item = null;
             if (minSugar.Dimension == maxSugar.Dimension)
             {
-                item = _Contents.Where(x => x.Key is IHaveSugar)
-                                .Select(x => x.Key as IHaveSugar)
-                                .Single(x => x.SugarValue.Value >= minSugar.Value && x.SugarValue.Value <= maxSugar.Value);
+                item = _Contents.Where(x => x.Key is IHaveSugar).Select(x => x.Key).Cast<IHaveSugar>().FirstOrDefault(x => x.SugarValue.Value >= minSugar.Value && x.SugarValue.Value <= maxSugar.Value);
             }
             return item;
         }
@@ -84,6 +82,17 @@ namespace ChristmasGift
         public void Sort(IComparer<IElementOfGift> comparer)
         {
            _Contents = _Contents.OrderBy(x => x.Key, comparer);
+        }
+
+        public void Print()
+        {
+            Console.WriteLine("---Ordinary Christmas Gift---");
+            foreach(var item in _Contents)
+            {
+                item.Key.Print();
+                Console.Write(" " + item.Value + " el;");
+                Console.WriteLine();
+            }
         }
     }
 }

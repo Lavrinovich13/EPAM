@@ -1,4 +1,5 @@
 ﻿using ChristmasGift.Dimensions;
+using ChristmasGift.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,6 +49,12 @@ namespace ChristmasGift.GiftElements
             _CountryOfManufacturer = countryOfManufacturer;
             _Weigth = weight;
             _Price = price;
+        }
+
+        public virtual void Print()
+        {
+            Console.Write(String.Format("Title: {0}, Manufacturer: {1}, Country: {2}, Weight: {3}{4}, Price: {5}{6}, ", 
+                Title, Manufacturer, CountryOfManufacturer, Weigth.Value, Weigth.Dimension, Price.Value, Price.Dimension));
         }
     }
 }
